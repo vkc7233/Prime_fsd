@@ -1,0 +1,9 @@
+git init (in particular folder)
+git add <file1path> <file2path> <file3path>
+git commit -m 'title' -m 'description'
+git push
+     *if you have not configured a remote branch  
+     *git remote add reponame repolink
+      
+     *if you no any branch in the repo 
+     **  git push --set-upstream reponame branch 
