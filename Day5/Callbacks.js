@@ -126,16 +126,53 @@ const gethighestscoringSubject=(obj)=>{
 //console.log("The percentage is",percentage);
 
 //getgrades(percentage);
-const getgrades=(percentage)=>{
-    const grade=[[60,"D"],[70,"C"],,[80,"B"],[90,"A"],[100,"A+"]];
-    let gradevalue="";
-    grade.findIndex((a)=>{
-        if(percentage>=a[0]){
-            gradevalue=a[1];
-        }
-    });
-    console.log("The grade is",gradevalue);
-}
+// const getgrades=(percentage)=>{
+//     const grade=[[60,"D"],[70,"C"],,[80,"B"],[90,"A"],[100,"A+"]];
+//     let gradevalue="";
+//     grade.findIndex((a)=>{
+//         if(percentage>=a[0]){
+//             gradevalue=a[1];
+//         }
+//     });
+//     console.log("The grade is",gradevalue);
+// }
+
+const arr=[10,20,30];
+
+// const newarr=arr.map((a)=>{
+//     return a*2;
+// });
+
+// console.log(newarr);
+//with default value
+// arr.reduce((a,b,idx,c)=>{
+//     console.log(a,b,idx,c);
+//     return a+b;
+// },0);
+
+// without default value
+// arr.reduce((a,b,idx,c)=>{
+//     console.log(a,b,idx,c);
+//     return a+b;
+// });
+
+// arr.reduce((a,e)=>{
+//     console.log(a,e);
+//     return a*e;
+// });
+
+// const ans= arr.reduce((a,e)=>{
+//     console.log(a,e);
+//     return a*e;
+// });
+// console.log(ans);
+
+const newarr=arr.reduce((a,e)=>{
+    a.push(e*2);
+    return a;
+},[]);
+console.log(newarr);
+
 
 
 
