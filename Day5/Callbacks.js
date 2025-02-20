@@ -167,11 +167,15 @@ const arr=[10,20,30];
 // });
 // console.log(ans);
 
-const newarr=arr.reduce((a,e)=>{
-    a.push(e*2);
-    return a;
-},[]);
-console.log(newarr);
+// const newarr=arr.reduce((a,e)=>{
+//     a.push(e*2);
+//     return a;
+// },[]);
+// console.log(newarr);
+
+const ele=document.getElementById("a")
+ele.style.color="red";
+
 
 
 
