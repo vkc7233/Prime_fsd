@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Event</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <center>
+      <form onsubmit="handleFormSubmit(event)">
+         <input type="email" placeholder="email" name="email" required>
+         <input type="name" placeholder="name" name="name" required>
+         <input type="city" placeholder="city" name="city" required>
+         <button>Add</button>
+       </form>
+      <header>
+         <button onclick="handlebackgroundchange()">Change Background</button>
+      </header>
+      <select onchange="choosecity(event)">
+         <option value="Delhi">
+            Delhi
+         </option>
+         <option value="Mumbai">
+            Mumbai
+         </option>
+         <option value="Noida">
+            Noida
+         </option>
+      </select>
+      <div id="parent">
+      </div>
+      <script src="index.js"></script>
+        
+
+
+   </center>
+</body>
+</html>

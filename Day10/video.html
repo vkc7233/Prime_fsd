@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      #comments-container {
+         margin-top: 20px;
+         width: 560px;
+      }
+      ul {
+         list-style: none;
+         padding: 0;
+      }
+      li {
+         background: #f1f1f1;
+         padding: 8px;
+         margin-bottom: 5px;
+         border-radius: 5px;
+      }
+      input {
+         width: 75%;
+         padding: 8px;
+         margin-top: 5px;
+         border: 1px solid #ccc;
+         border-radius: 5px;
+      }
+      button {
+         padding: 8px 12px;
+         margin-left: 5px;
+         border: none;
+         background-color: #ff0000;
+         color: white;
+         cursor: pointer;
+         border-radius: 5px;
+      }
+      button:hover {
+         background-color: #cc0000;
+      }
+   </style>
+</head>
+<body>
+   <a href='./index.html'>Home</a>
+
+   <iframe width="560" height="315" src="" title="YouTube video player" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+   
+   <!-- Comment Section -->
+   <div id="comments-container">
+      <h3>Comments</h3>
+      <ul id="comments-list"></ul> <!-- Comments will be listed here -->
+      <input type="text" id="comment-input" placeholder="Add a comment...">
+      <button onclick="addComment()">Post</button>
+   </div>
+   
+   <script>
+      // Extract Video ID from URL
+      const iframe = document.querySelector('iframe');
+      const splitText = window.location.search.split("=");
+      const videoId = splitText[1];
+   
+      iframe.src = `https://www.youtube.com/embed/${videoId}`;
+   
+      // Store Video History in LocalStorage
+      const youtubeHistory = localStorage.getItem('yt_history');
+      if (!youtubeHistory) {
+         localStorage.setItem("yt_history", JSON.stringify([videoId]));
+      } else {
+         const newHistory = JSON.parse(youtubeHistory);
+         if (!newHistory.includes(videoId)) { // Avoid duplicate entries
+            newHistory.push(videoId);
+            localStorage.setItem("yt_history", JSON.stringify(newHistory));
+         }
+      }
+   
+      // 📝 Function to Load Comments for the Current Video
+      function loadComments() {
+         const commentsList = document.getElementById("comments-list");
+         commentsList.innerHTML = ""; // Clear existing comments
+   
+         const commentsData = JSON.parse(localStorage.getItem("comments")) || {};
+         const videoComments = commentsData[videoId] || []; // Get comments for this video
+   
+         videoComments.forEach(comment => {
+            const li = document.createElement("li");
+            li.textContent = comment;
+            commentsList.appendChild(li);
+         });
+      }
+   
+      // ➕ Function to Add a New Comment
+      function addComment() {
+         const input = document.getElementById("comment-input");
+         const commentText = input.value.trim();
+   
+         if (commentText === "") return; // Prevent empty comments
+   
+         let commentsData = JSON.parse(localStorage.getItem("comments")) || {};
+         if (!commentsData[videoId]) {
+            commentsData[videoId] = [];
+         }
+         
+         commentsData[videoId].push(commentText); // Store comment under the video ID
+         localStorage.setItem("comments", JSON.stringify(commentsData));
+   
+         input.value = ""; // Clear input field
+         loadComments(); // Refresh comments list
+      }
+   
+      // Load existing comments on page load
+      loadComments();
+   </script>
+</body>
+</html>

@@ -15,6 +15,16 @@ arr.forEach((elem)=>{
 false
 );
 
+const deleteBtn = document.createElement("button");
+deleteBtn.innerText = "❌";
+deleteBtn.className = "delete-btn";
+
+deleteBtn.addEventListener("click", (event) => {
+    console.log("Delete button clicked");
+    ncard.remove(); 
+    event.stopPropagation(); 
+});
+
    ncard.innerHTML=`
    <h4>  ${elem.Name}</h4>
     <h6>  ${elem.City}</h6>
