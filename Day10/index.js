@@ -5737,7 +5737,7 @@
             <h4>${obj.title}</h4>
         `;
         newCard.addEventListener("click", () => {
-            window.location.href = `watch.html?v=${obj.videoId}`;
+            window.location.href = `video.html?v=${obj.videoId}`;
         });
 
         fragment.appendChild(newCard);
@@ -5767,7 +5767,6 @@ const handleHover = (e, idx) => {
       );
       showUI(filteredData); // Update UI with search results
   };
-  
   // Function to display video description
   const showVideoDescription = (video) => {
       const descriptionContainer = document.createElement("div");
