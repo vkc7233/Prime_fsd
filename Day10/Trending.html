@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Trending Videos</title>
+   <link rel="stylesheet" href="style.css"> 
+   <script>
+       document.addEventListener("DOMContentLoaded", () => {
+           fetch("https://youtube138.p.rapidapi.com/v2/trending", {
+               method: "GET",
+               headers: {
+                   "x-rapidapi-host": "youtube138.p.rapidapi.com",
+                   "x-rapidapi-key": "7b60f0da05msh4994661cef1a330p1eae88jsn2a2c5fe21bba",
+               },
+           })
+           .then(response => response.json())
+           .then(data => showTrendingVideos(data))
+           .catch(error => console.error("Error fetching trending videos:", error));
+       });
+
+       const showTrendingVideos = (data) => {
+           const videoContainer = document.getElementById("video-container");
+           videoContainer.innerHTML = "";
+           data.contents.forEach(video => {
+               if (video.video) {
+                   const videoElement = document.createElement("div");
+                   videoElement.classList.add("video-card");
+                   videoElement.innerHTML = `
+                       <img src='${video.video.thumbnails[0].url}' width="100%" onclick="redirectToVideo('${video.video.videoId}')">
+                       <h4>${video.video.title}</h4>
+                       <p>By ${video.video.author.title}</p>
+                   `;
+                   videoContainer.appendChild(videoElement);
+               }
+           });
+       };
+
+       const redirectToVideo = (videoId) => {
+           window.location.href = `https://www.youtube.com/watch?v=${videoId}`;
+       };
+   </script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="yt2.png" alt="YouTube" class="logo">
+        </div>
+    </header>
+    <aside>
+        <nav>
+            <ul>
+                <li><a href="./index.html">🏠 Home</a></li>
+                <li><a href="./trending.html">🔥 Trending</a></li>
+                <li><a href="./subscriptions.html">📺 Subscriptions</a></li>
+                <li><a href="./library.html">📚 Library</a></li>
+                <li><a href="./history.html">⏳ History</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main id="video-container"></main>
+</body>
+</html>

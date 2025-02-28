@@ -4,36 +4,79 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>YouTube Clone</title>
-   <link rel="stylesheet" href="style.css"> <!-- Linking external CSS file -->
+   <link rel="stylesheet" href="style.css"> 
+   <style>
+       * {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+       }
+
+       nav {
+           padding: 1.5rem;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           background-color:black;
+       }
+
+       input {
+           padding: 0.25rem 0.7rem;
+           border-radius: 0.5rem;
+           border: 1px solid grey;
+       }
+
+       .search-container {
+           position: relative;
+       }
+
+       #locations {
+           position: absolute;
+           background-color: black;
+           color: white;
+           border-radius: 0.5rem;
+       }
+
+       p {
+           padding: 0.25rem 1rem;
+           border-bottom: 1px solid lime;
+           font-size: 0.75rem;
+           transition: all 600ms ease;
+       }
+
+       p:last-of-type {
+           border-bottom: none;
+       }
+
+       p:hover {
+           cursor: pointer;
+           background-color: rgb(31, 40, 50);
+       }
+   </style>
 </head>
 <body>
     <header>
         <div class="logo-container">
-            <img src="yt2.png" alt="YouTube" class="logo"> <!-- YouTube logo -->
+            <img src="yt2.png" alt="YouTube" class="logo">
         </div>
         <div class="search-container">
-            <input type="text" name="search-text" placeholder="Search...">
-            <button>
-                <img src="search-icon.png" alt="Search"> <!-- Add your search icon here -->
-            </button>
+            <input type="text" name="search-text" placeholder="Search videos..." onkeyup="handleSearch(event)">
+            <div id="locations"></div>
         </div>
     </header>
     <aside>
         <nav>
             <ul>
-                <!-- Sidebar navigation links with icons -->
                 <li><a href="./index.html">🏠 Home</a></li>
-                <li><a href="./trending.html">🔥 Trending</a></li>
+                <li><a href="./Trending.html">🔥 Trending</a></li>
                 <li><a href="./subscriptions.html">📺 Subscriptions</a></li>
                 <li><a href="./library.html">📚 Library</a></li>
                 <li><a href="./history.html">⏳ History</a></li>
             </ul>
         </nav>
     </aside>
-    
-    <main id="video-container">
-        <!-- This is where video thumbnails and details will be dynamically inserted -->
-    </main>
-    <script src="./index.js"></script> <!-- Linking external JavaScript file -->
+    <main id="video-container"></main>
+    <script src="./index.js"></script>
+    <script src="./Search.js"></script>
 </body>
 </html>
