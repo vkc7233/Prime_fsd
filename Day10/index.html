@@ -75,8 +75,17 @@
             </ul>
         </nav>
     </aside>
-    <main id="video-container"></main>
+    <main id="video-container">
+        <iframe id="video-frame" src=""></iframe>
+    </main>
     <script src="./index.js"></script>
     <script src="./Search.js"></script>
+    <script>
+        function loadVideo(videoId) {
+            const iframe = document.getElementById('video-frame');
+            iframe.src = `video.html?v=${videoId}`;
+            iframe.style.display = 'block';
+        }
+    </script>
 </body>
 </html>
